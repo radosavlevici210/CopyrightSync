@@ -1,0 +1,31 @@
+import Header from "@/components/header";
+import Navigation from "@/components/navigation";
+import HeroSection from "@/components/hero-section";
+import DeclarationSection from "@/components/declaration-section";
+import PoliciesSection from "@/components/policies-section";
+import SecuritySection from "@/components/security-section";
+import ComplianceDashboard from "@/components/compliance-dashboard";
+import AiDeclaration from "@/components/ai-declaration";
+import LegalSection from "@/components/legal-section";
+import ContactSection from "@/components/contact-section";
+import FinalMessage from "@/components/final-message";
+import Footer from "@/components/footer";
+
+export default function Home() {
+  return (
+    <div className="min-h-screen">
+      <Header />
+      <Navigation />
+      <HeroSection />
+      <DeclarationSection />
+      <PoliciesSection />
+      <SecuritySection />
+      <ComplianceDashboard />
+      <AiDeclaration />
+      <LegalSection />
+      <ContactSection />
+      <FinalMessage />
+      <Footer />
+    </div>
+  );
+}
