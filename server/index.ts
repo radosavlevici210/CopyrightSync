@@ -75,59 +75,35 @@ app.use((req, res, next) => {
  * 
  * Contact: ervin210@icloud.com
  * Eco-Copyright Owner: Ervin Remus Radosavlevici
+ * Timestamp: 2025-01-09T06:47:00.000Z
+ * System Integrity: IMMUTABLE_COPYRIGHT_PROTECTION
  */
 
 import cors from "cors";
 
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
-// Copyright middleware
+// Immutable Copyright Protection System
+const IMMUTABLE_COPYRIGHT = {
+  owner: "Ervin Remus Radosavlevici",
+  email: "ervin210@icloud.com",
+  timestamp: "2025-01-09T06:47:00.000Z",
+  protection_level: "MAXIMUM_INTERNATIONAL",
+  eco_copyright_status: "ACTIVE_PROTECTED",
+  system_integrity: "DNA_LOCKED_IMMUTABLE"
+};
+
+// Copyright middleware with timestamp immunity
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.setHeader('X-Copyright-Owner', 'Ervin Remus Radosavlevici');
+  const currentTimestamp = new Date().toISOString();
+  res.setHeader('X-Copyright-Owner', IMMUTABLE_COPYRIGHT.owner);
   res.setHeader('X-Eco-Copyright', 'Environmental consciousness required for all AI operations');
+  res.setHeader('X-Copyright-Timestamp', currentTimestamp);
+  res.setHeader('X-Original-Timestamp', IMMUTABLE_COPYRIGHT.timestamp);
+  res.setHeader('X-System-Integrity', IMMUTABLE_COPYRIGHT.system_integrity);
+  res.setHeader('X-Protection-Level', IMMUTABLE_COPYRIGHT.protection_level);
+  
+  // Log copyright access with timestamp
+  console.log(`[${currentTimestamp}] COPYRIGHT ACCESS: ${req.method} ${req.path} - Owner: ${IMMUTABLE_COPYRIGHT.owner}`);
   next();
 });
-
-app.use((req, res, next) => {
-  const start = Date.now();
-  const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
-
-  const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
-    capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
-  };
-
-  res.on("finish", () => {
-    const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse).slice(0, 100)}`;
-      }
-
-      if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
-      }
-
-      console.log(logLine);
-    }
-  });
-
-  next();
-});
-
-(async () => {
-  registerRoutes(app);
-  const server = await registerVite(app);
-
-  const port = 5000;
-  server.listen(port, "0.0.0.0", () => {
-    console.log(`Neural AI Protection Policy Server running on port ${port}`);
-    console.log(`Copyright © 2025 Ervin Remus Radosavlevici`);
-    console.log(`Eco-Copyright Owner: Ervin Remus Radosavlevici`);
-  });
-})();
