@@ -77,12 +77,8 @@ app.use((req, res, next) => {
  * Eco-Copyright Owner: Ervin Remus Radosavlevici
  */
 
-import express, { type Request, Response, NextFunction } from "express";
-import { registerVite } from "./vite";
-import { registerRoutes } from "./routes";
 import cors from "cors";
 
-const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -126,7 +122,7 @@ app.use((req, res, next) => {
 
 (async () => {
   registerRoutes(app);
-  const server = registerVite(app);
+  const server = await registerVite(app);
 
   const port = 5000;
   server.listen(port, "0.0.0.0", () => {

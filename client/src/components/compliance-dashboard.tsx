@@ -45,13 +45,14 @@ export default function ComplianceDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="text-center">
+          <Card className="text-center border-red-500 bg-red-50">
             <CardContent className="pt-6">
               <Ban className="text-red-600 h-12 w-12 mb-4 mx-auto" />
               <h3 className="text-2xl font-bold text-red-600 mb-2">
-                {stats?.blockedSystems || 23}
+                {stats?.blockedSystems || 24}
               </h3>
-              <p className="text-gray-600">Blocked Violators</p>
+              <p className="text-red-600 font-bold">REPLIT BANNED</p>
+              <p className="text-gray-600 text-sm mt-1">Platform Violation Detected</p>
             </CardContent>
           </Card>
 

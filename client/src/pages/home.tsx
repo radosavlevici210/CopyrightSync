@@ -11,12 +11,14 @@ import EcoCopyrightSection from "@/components/eco-copyright-section";
 import ContactSection from "@/components/contact-section";
 import FinalMessage from "@/components/final-message";
 import Footer from "@/components/footer";
+import { ReplitBanAlert } from "@/components/replit-ban-alert";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <Header />
       <Navigation />
+      <ReplitBanAlert />
       <HeroSection />
       <DeclarationSection />
       <PoliciesSection />
