@@ -1,0 +1,43 @@
+
+{
+  "build": {
+    "publish": "dist",
+    "command": "npm run build:netlify",
+    "environment": {
+      "NODE_VERSION": "20",
+      "NPM_FLAGS": "--production=false"
+    }
+  },
+  "functions": {
+    "directory": "netlify/functions",
+    "node_bundler": "esbuild"
+  },
+  "redirects": [
+    {
+      "from": "/api/*",
+      "to": "/.netlify/functions/api",
+      "status": 200
+    },
+    {
+      "from": "/*",
+      "to": "/index.html",
+      "status": 200
+    }
+  ],
+  "headers": [
+    {
+      "for": "/*",
+      "values": {
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "X-Copyright-Owner": "Ervin Remus Radosavlevici",
+        "X-Eco-Copyright": "Environmental consciousness required"
+      }
+    }
+  ],
+  "copyright": "© 2025 Ervin Remus Radosavlevici. All rights reserved under international copyright law.",
+  "eco_copyright_owner": "Ervin Remus Radosavlevici",
+  "contact": "ervin210@icloud.com"
+}

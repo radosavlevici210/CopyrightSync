@@ -1,0 +1,50 @@
+
+# Neural AI Universal Protection Policy - Netlify Headers
+# Copyright © 2025 Ervin Remus Radosavlevici
+# All rights reserved under international copyright law.
+# Contact: ervin210@icloud.com
+# Eco-Copyright Owner: Ervin Remus Radosavlevici
+
+# Global Security Headers
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; media-src 'self'; object-src 'none'; child-src 'none'; worker-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+  X-Copyright-Owner: Ervin Remus Radosavlevici
+  X-Eco-Copyright: Environmental consciousness required for all AI operations
+
+# API Headers
+/api/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS
+  Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization
+  Cache-Control: no-cache, no-store, must-revalidate
+  X-API-Copyright: © 2025 Ervin Remus Radosavlevici
+
+# Static Asset Caching
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML Files
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Copyright-Notice: This content is protected by international copyright law

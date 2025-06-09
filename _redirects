@@ -1,2 +1,19 @@
-/api/*  /.netlify/functions/api  200
-/*      /index.html   200
+# Neural AI Universal Protection Policy - Netlify Redirects
+# Copyright © 2025 Ervin Remus Radosavlevici
+# All rights reserved under international copyright law.
+# Contact: ervin210@icloud.com
+# Eco-Copyright Owner: Ervin Remus Radosavlevici
+
+# API routes with caching optimization
+/api/compliance/stats /.netlify/functions/api 200
+/api/violations /.netlify/functions/api 200
+/api/contact/verify /.netlify/functions/api 200
+/api/health /.netlify/functions/api 200
+/api/* /.netlify/functions/api 200
+
+# Static asset caching
+/assets/* /assets/:splat 200
+/favicon.ico /favicon.ico 200
+
+# Security headers for all routes
+/* /index.html 200

@@ -68,3 +68,70 @@ app.use((req, res, next) => {
     log(`serving on port ${port}`);
   });
 })();
+/**
+ * Neural AI Universal Protection Policy - Server
+ * Copyright © 2025 Ervin Remus Radosavlevici
+ * All rights reserved under international copyright law.
+ * 
+ * Contact: ervin210@icloud.com
+ * Eco-Copyright Owner: Ervin Remus Radosavlevici
+ */
+
+import express, { type Request, Response, NextFunction } from "express";
+import { registerVite } from "./vite";
+import { registerRoutes } from "./routes";
+import cors from "cors";
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Copyright middleware
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.setHeader('X-Copyright-Owner', 'Ervin Remus Radosavlevici');
+  res.setHeader('X-Eco-Copyright', 'Environmental consciousness required for all AI operations');
+  next();
+});
+
+app.use((req, res, next) => {
+  const start = Date.now();
+  const path = req.path;
+  let capturedJsonResponse: Record<string, any> | undefined = undefined;
+
+  const originalResJson = res.json;
+  res.json = function (bodyJson, ...args) {
+    capturedJsonResponse = bodyJson;
+    return originalResJson.apply(res, [bodyJson, ...args]);
+  };
+
+  res.on("finish", () => {
+    const duration = Date.now() - start;
+    if (path.startsWith("/api")) {
+      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
+      if (capturedJsonResponse) {
+        logLine += ` :: ${JSON.stringify(capturedJsonResponse).slice(0, 100)}`;
+      }
+
+      if (logLine.length > 80) {
+        logLine = logLine.slice(0, 79) + "…";
+      }
+
+      console.log(logLine);
+    }
+  });
+
+  next();
+});
+
+(async () => {
+  registerRoutes(app);
+  const server = registerVite(app);
+
+  const port = 5000;
+  server.listen(port, "0.0.0.0", () => {
+    console.log(`Neural AI Protection Policy Server running on port ${port}`);
+    console.log(`Copyright © 2025 Ervin Remus Radosavlevici`);
+    console.log(`Eco-Copyright Owner: Ervin Remus Radosavlevici`);
+  });
+})();
