@@ -1,9 +1,11 @@
+
 [build]
   publish = "dist"
-  command = "npx vite build && cp netlify.toml dist/ && cp _redirects dist/ && mkdir -p dist/.netlify/functions && cp netlify/functions/api.js dist/.netlify/functions/"
+  command = "npm run build && cp netlify.toml dist/ && cp _redirects dist/ && mkdir -p dist/.netlify/functions && cp netlify/functions/api.js dist/.netlify/functions/"
 
 [build.environment]
   NODE_VERSION = "20"
+  NPM_FLAGS = "--production=false"
 
 [[redirects]]
   from = "/api/*"
@@ -19,9 +21,50 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+# Performance optimizations
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
 [[headers]]
   for = "/api/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, PATCH, OPTIONS"
     Access-Control-Allow-Headers = "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
