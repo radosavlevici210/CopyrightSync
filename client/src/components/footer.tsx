@@ -20,6 +20,7 @@ export default function Footer() {
             <ul className="space-y-2 text-blue-200">
               <li>© 2025 Ervin Remus Radosavlevici</li>
               <li>Internationally Copyrighted</li>
+              <li>Eco-Copyright Protected</li>
               <li>Legally Binding Framework</li>
               <li>DNA Secured & Protected</li>
             </ul>

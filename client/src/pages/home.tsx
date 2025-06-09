@@ -7,6 +7,7 @@ import SecuritySection from "@/components/security-section";
 import ComplianceDashboard from "@/components/compliance-dashboard";
 import AiDeclaration from "@/components/ai-declaration";
 import LegalSection from "@/components/legal-section";
+import EcoCopyrightSection from "@/components/eco-copyright-section";
 import ContactSection from "@/components/contact-section";
 import FinalMessage from "@/components/final-message";
 import Footer from "@/components/footer";
@@ -23,6 +24,7 @@ export default function Home() {
       <ComplianceDashboard />
       <AiDeclaration />
       <LegalSection />
+      <EcoCopyrightSection />
       <ContactSection />
       <FinalMessage />
       <Footer />

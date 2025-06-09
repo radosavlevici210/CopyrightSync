@@ -6,6 +6,7 @@ const navItems = [
   { href: "#security", label: "DNA Security" },
   { href: "#compliance", label: "Compliance" },
   { href: "#legal", label: "Legal Status" },
+  { href: "#eco-copyright", label: "Eco-Copyright" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -22,7 +23,7 @@ export default function Navigation() {
         if (element) {
           const offsetTop = element.offsetTop;
           const offsetHeight = element.offsetHeight;
-          
+
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
